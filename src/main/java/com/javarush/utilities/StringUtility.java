@@ -2,7 +2,7 @@ package com.javarush.utilities;
 
 import java.util.ArrayList;
 
-public class StringUtil {
+public class StringUtility {
 
     public static ArrayList<Character> getCharsFromString(String string) {
         char[] chars = string.toCharArray();

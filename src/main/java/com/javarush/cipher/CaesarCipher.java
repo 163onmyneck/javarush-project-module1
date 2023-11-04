@@ -1,7 +1,7 @@
 package com.javarush.cipher;
 
 import com.javarush.constants.Constants;
-import com.javarush.utilities.StringUtil;
+import com.javarush.utilities.StringUtility;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class CaesarCipher {
 
     public String cryptForEngLanguage(String string, int key) {
         StringBuilder stringBuilder = new StringBuilder();
-        ArrayList<Character> chars = StringUtil.getCharsFromString(string);
+        ArrayList<Character> chars = StringUtility.getCharsFromString(string);
         ArrayList<Character> engChars = Constants.getAlphabeticEn();
         for (int i = 0; i < chars.size(); i++) {
             int index = engChars.indexOf(chars.get(i));
@@ -28,7 +28,7 @@ public class CaesarCipher {
 
     public String cryptForUaLanguage(String string, int key) {
         StringBuilder stringBuilder = new StringBuilder();
-        ArrayList<Character> chars = StringUtil.getCharsFromString(string);
+        ArrayList<Character> chars = StringUtility.getCharsFromString(string);
         ArrayList<Character> uaChars = Constants.getAlphabeticUa();
         for (int i = 0; i < chars.size(); i++) {
             int index = uaChars.indexOf(chars.get(i));
@@ -47,7 +47,7 @@ public class CaesarCipher {
 
     public String decryptForUaLanguage(String string, int key) {
         StringBuilder stringBuilder = new StringBuilder();
-        ArrayList<Character> chars = StringUtil.getCharsFromString(string);
+        ArrayList<Character> chars = StringUtility.getCharsFromString(string);
         ArrayList<Character> uaChars = Constants.getAlphabeticUa();
         for (int i = 0; i < chars.size(); i++) {
             int index = uaChars.indexOf(chars.get(i));
@@ -66,7 +66,7 @@ public class CaesarCipher {
 
     public String decryptForEngLanguage(String string, int key) {
         StringBuilder stringBuilder = new StringBuilder();
-        ArrayList<Character> chars = StringUtil.getCharsFromString(string);
+        ArrayList<Character> chars = StringUtility.getCharsFromString(string);
         ArrayList<Character> engChars = Constants.getAlphabeticEn();
         for (int i = 0; i < chars.size(); i++) {
             int index = engChars.indexOf(chars.get(i));
