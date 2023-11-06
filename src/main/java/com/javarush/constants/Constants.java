@@ -2,6 +2,7 @@ package com.javarush.constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Constants {
     private final static ArrayList<Character> ALPHABETIC_EN = new ArrayList<>(
@@ -27,5 +28,25 @@ public class Constants {
 
     public static ArrayList<Character> getAlphabeticUa() {
         return ALPHABETIC_UA;
+    }
+
+    private static final HashSet<String> COMMON_ENGLISH_WORDS = new HashSet<>(
+            Arrays.asList(
+                    "the", "be", "a", "of", "in", "on", "I", "have", "is", "up", "are", "am"
+            ));
+
+    private static final HashSet<String> COMMON_UKRAINIAN_WORDS = new HashSet<>(
+            Arrays.asList(
+                    "та", "і", "у", "на", "з", "не", "в", "що", "це", "він",
+                    "вона", "ми", "ти", "вони", "бути", "мати", "що", "для", "як", "також",
+                    "цей", "але", "той", "який", "тут", "як", "коли", "дуже", "багато", "всі"
+            ));
+
+    public static HashSet<String> getCommonEnglishWords(){
+        return COMMON_ENGLISH_WORDS;
+    }
+
+    public static HashSet<String> getCommonUkrainianWords() {
+        return COMMON_UKRAINIAN_WORDS;
     }
 }

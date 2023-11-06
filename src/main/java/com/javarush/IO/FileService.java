@@ -14,10 +14,9 @@ public class FileService {
             Path absolutePath = Path.of(path);
             List<String> lines = Files.readAllLines(absolutePath, StandardCharsets.UTF_8);
             return lines;
-        } catch (IOException e){
-            System.out.println(e.getStackTrace());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        throw new RuntimeException();
     }
 
     public void writeFile(String path, String operation, List<String> list) {
