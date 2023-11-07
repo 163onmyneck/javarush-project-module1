@@ -32,7 +32,7 @@ public class Constants {
 
     private static final HashSet<String> COMMON_ENGLISH_WORDS = new HashSet<>(
             Arrays.asList(
-                    "the", "be", "a", "of", "in", "on", "I", "have", "is", "up", "are", "am"
+                    "the", "be", "a", "of", "in", "on", "I", "have", "is", "up", "are", "am", "it", "this"
             ));
 
     private static final HashSet<String> COMMON_UKRAINIAN_WORDS = new HashSet<>(

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CaesarCipher {
 
-    public String cryptForEngLanguage(String string, int key) {
+    public String encryptForEngLanguage(String string, int key) {
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Character> chars = StringUtility.getCharsFromString(string);
         ArrayList<Character> engChars = Constants.getAlphabeticEn();
@@ -26,7 +26,7 @@ public class CaesarCipher {
         return stringBuilder.toString();
     }
 
-    public String cryptForUaLanguage(String string, int key) {
+    public String encryptForUaLanguage(String string, int key) {
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Character> chars = StringUtility.getCharsFromString(string);
         ArrayList<Character> uaChars = Constants.getAlphabeticUa();
