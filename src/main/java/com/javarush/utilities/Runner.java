@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class Runner {
 
     public void run() {
+        System.out.println("введіть команду, шлях та ключ по черзі. Приклад" +
+                "\ncrack /Users/olegtruskiy/projects/javarush-project-module1/src/main/java/com/javarush/utilities/test[ENCRYPT] 5");
         Scanner scanner = new Scanner(System.in);
         String operation = scanner.next();
         String path = scanner.next();
