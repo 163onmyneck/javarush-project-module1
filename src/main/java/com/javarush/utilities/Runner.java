@@ -10,51 +10,76 @@ import java.util.Scanner;
 
 public class Runner {
 
+    private String path;
+    private String operation;
+    private int key;
+
+    CaesarCipher cipher = new CaesarCipher();
+    FileService fileService = new FileService();
+    ChoosingLanguage choosingLanguage = new ChoosingLanguage();
+    TalkingWithUser talkingWithUser = new TalkingWithUser();
+    Scanner scanner;
+
     public void run() {
-        System.out.println("введіть команду, шлях та ключ по черзі. Приклад" +
-                "\ncrack /Users/olegtruskiy/projects/javarush-project-module1/src/main/java/com/javarush/utilities/test[ENCRYPT] 5");
-        Scanner scanner = new Scanner(System.in);
-        String operation = scanner.next();
-        String path = scanner.next();
-        int key = Integer.parseInt(scanner.next());
-        CaesarCipher cipher = new CaesarCipher();
-        FileService fileService = new FileService();
-        ChoosingLanguage choosingLanguage = new ChoosingLanguage();
+        talkingWithUser.sayHello();
+        scanner = new Scanner(System.in);
+        this.operation = scanner.next();
+        this.path = scanner.next();
 
         if (operation.equalsIgnoreCase("encrypt")) {
-            List<String> result2 = new ArrayList<>();
-            List<String> oldStrings = fileService.readFile(path);
-            if(choosingLanguage.isEnglish(oldStrings.get(0))){
-                for(String s : oldStrings) {
-                    result2.add(cipher.encryptForEngLanguage(s, key));
-                }
-            } else {
-                for (String s : oldStrings) {
-                    result2.add(cipher.encryptForUaLanguage(s, key));
-                }
-            }
-            fileService.writeFile(path, operation.toUpperCase(), result2);
+            encrypt();
         } else if (operation.equalsIgnoreCase("decrypt")) {
-            List<String> result = new ArrayList<>();
-            List<String> oldStrings = fileService.readFile(path);
-            String s = cipher.decryptForEngLanguage(oldStrings.get(0), key);
-            if (choosingLanguage.isEnglish(s)) {
-                for (String ss : oldStrings) {
-                   result.add(cipher.decryptForEngLanguage(ss, key));
-                }
-            } else {
-                for (String ss : oldStrings) {
-                    result.add(cipher.encryptForUaLanguage(ss, key));
-                }
-            }
-            fileService.writeFile(path, operation.toUpperCase(), result);
+            decrypt();
         } else if (operation.equalsIgnoreCase("crack")) {
-            CaeserCipherCracker caesarCipher = new CaeserCipherCracker(fileService, cipher);
-            int result = caesarCipher.caesarCipherCrackerForEnglish(path);
-            if (result == -1) {
-                result = caesarCipher.caesarCipherCrackerForUkrainian(path);
-            }
-            System.out.println(result);
+            crack();
+        } else {
+            talkingWithUser.sayAboutMistake();
         }
+    }
+
+    public void encrypt() {
+        talkingWithUser.askForKey();
+        this.key = scanner.nextInt();
+        List<String> encryptedText = new ArrayList<>();
+        List<String> stringsFromGivenFile = fileService.readFile(path);
+        String firstStringFromGivenFile = stringsFromGivenFile.get(0);
+        if(choosingLanguage.isEnglish(firstStringFromGivenFile)){
+            for(String s : stringsFromGivenFile) {
+                encryptedText.add(cipher.encryptForEngLanguage(s, key));
+            }
+        } else {
+            for (String s : stringsFromGivenFile) {
+                encryptedText.add(cipher.encryptForUaLanguage(s, key));
+            }
+        }
+        fileService.writeFile(path, operation.toUpperCase(), encryptedText);
+    }
+
+    public void decrypt() {
+        talkingWithUser.askForKey();
+        this.key = scanner.nextInt();
+        List<String> decryptedStrings = new ArrayList<>();
+        List<String> stringsFromGivenFile = fileService.readFile(path);
+        String firstStringFromGivenFile = stringsFromGivenFile.get(0);
+        String s = cipher.decryptForEngLanguage(firstStringFromGivenFile, key);
+        if (choosingLanguage.isEnglish(s)) {
+            for (String ss : stringsFromGivenFile) {
+                decryptedStrings.add(cipher.decryptForEngLanguage(ss, key));
+            }
+        } else {
+            for (String ss : stringsFromGivenFile) {
+                decryptedStrings.add(cipher.encryptForUaLanguage(ss, key));
+            }
+        }
+        fileService.writeFile(path, operation.toUpperCase(), decryptedStrings);
+    }
+
+    public void crack() {
+        CaeserCipherCracker caesarCipher = new CaeserCipherCracker(fileService, cipher);
+        int result = caesarCipher.caesarCipherCrackerForEnglish(path);
+        if (result == -1) {
+            result = caesarCipher.caesarCipherCrackerForUkrainian(path);
+        }
+        System.out.println(result);
     }
 }
