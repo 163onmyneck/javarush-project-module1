@@ -44,12 +44,12 @@ public class Runner {
         List<String> stringsFromGivenFile = fileService.readFile(path);
         String firstStringFromGivenFile = stringsFromGivenFile.get(0);
         if(choosingLanguage.isEnglish(firstStringFromGivenFile)){
-            for(String s : stringsFromGivenFile) {
-                encryptedText.add(cipher.encryptForEngLanguage(s, key));
+            for(String textLine : stringsFromGivenFile) {
+                encryptedText.add(cipher.encryptForEngLanguage(textLine, key));
             }
         } else {
-            for (String s : stringsFromGivenFile) {
-                encryptedText.add(cipher.encryptForUaLanguage(s, key));
+            for (String textLine : stringsFromGivenFile) {
+                encryptedText.add(cipher.encryptForUaLanguage(textLine, key));
             }
         }
         fileService.writeFile(path, operation.toUpperCase(), encryptedText);
@@ -63,12 +63,12 @@ public class Runner {
         String firstStringFromGivenFile = stringsFromGivenFile.get(0);
         String s = cipher.decryptForEngLanguage(firstStringFromGivenFile, key);
         if (choosingLanguage.isEnglish(s)) {
-            for (String ss : stringsFromGivenFile) {
-                decryptedStrings.add(cipher.decryptForEngLanguage(ss, key));
+            for (String textLine : stringsFromGivenFile) {
+                decryptedStrings.add(cipher.decryptForEngLanguage(textLine, key));
             }
         } else {
-            for (String ss : stringsFromGivenFile) {
-                decryptedStrings.add(cipher.encryptForUaLanguage(ss, key));
+            for (String textLine : stringsFromGivenFile) {
+                decryptedStrings.add(cipher.encryptForUaLanguage(textLine, key));
             }
         }
         fileService.writeFile(path, operation.toUpperCase(), decryptedStrings);
