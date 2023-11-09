@@ -76,10 +76,13 @@ public class Runner {
 
     public void crack() {
         CaeserCipherCracker caesarCipher = new CaeserCipherCracker(fileService, cipher);
+        List<String> stringsFromGivenFile = fileService.readFile(path);
         int result = caesarCipher.caesarCipherCrackerForEnglish(path);
         if (result == -1) {
             result = caesarCipher.caesarCipherCrackerForUkrainian(path);
         }
+        String keyAddToPath = "key = " + result;
         System.out.println(result);
+        fileService.writeFile(path, keyAddToPath, stringsFromGivenFile);
     }
 }
