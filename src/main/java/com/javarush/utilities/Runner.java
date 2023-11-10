@@ -85,4 +85,28 @@ public class Runner {
         System.out.println(result);
         fileService.writeFile(path, keyAddToPath, stringsFromGivenFile);
     }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public String getPath() {
+        return path;
+    }
 }
