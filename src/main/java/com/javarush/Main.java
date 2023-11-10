@@ -6,8 +6,7 @@ import com.javarush.utilities.TalkingWithUser;
 public class Main {
     public static void main(String[] args) {
         Runner runner = new Runner();
-        runner.run();
-       /* TalkingWithUser talkingWithUser = new TalkingWithUser();
+        TalkingWithUser talkingWithUser = new TalkingWithUser();
         if (args.length == 0) {
             runner.run();
         } else if (args.length > 2) {
@@ -26,7 +25,7 @@ public class Main {
             }
         } else {
             talkingWithUser.sayAboutMistake();
-        } */
+        }
     }
 }
 
