@@ -6,13 +6,15 @@ import com.javarush.utilities.TalkingWithUser;
 public class Main {
     public static void main(String[] args) {
         Runner runner = new Runner();
-        TalkingWithUser talkingWithUser = new TalkingWithUser();
+        runner.run();
+       /* TalkingWithUser talkingWithUser = new TalkingWithUser();
         if (args.length == 0) {
             runner.run();
-        } else if (args.length != 0) {
+        } else if (args.length > 2) {
             String operation = args[0];
             String filePath = args[1];
             int key = Integer.valueOf(args[2]);
+            runner.setOperation(operation);
             runner.setPath(filePath);
             runner.setKey(key);
             if (operation.equalsIgnoreCase("encrypt")) {
@@ -24,7 +26,7 @@ public class Main {
             }
         } else {
             talkingWithUser.sayAboutMistake();
-        }
+        } */
     }
 }
 
