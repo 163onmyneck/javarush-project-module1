@@ -1,14 +1,32 @@
 package com.javarush;
 
-import com.javarush.cipher.CaesarCipher;
+import com.javarush.utilities.Runner;
+import com.javarush.utilities.TalkingWithUser;
 
 public class Main {
     public static void main(String[] args) {
-        CaesarCipher cipher = new CaesarCipher();
-        String s = "««««««asdfkbs v scvsdvsfsdf::: asdasd";
-        int key = 1;
-        System.out.println(cipher.cryptForEngLanguage(s, key));
-        String ss = "фіфівіфвпкуеавимпва:??";
-        System.out.println(cipher.cryptForUaLanguage(ss, key));
+        Runner runner = new Runner();
+        TalkingWithUser talkingWithUser = new TalkingWithUser();
+        if (args.length == 0) {
+            runner.run();
+        } else if (args.length > 2) {
+            String operation = args[0];
+            String filePath = args[1];
+            int key = Integer.valueOf(args[2]);
+            runner.setOperation(operation);
+            runner.setPath(filePath);
+            runner.setKey(key);
+            if (operation.equalsIgnoreCase("encrypt")) {
+                runner.encrypt();
+            } else if (operation.equalsIgnoreCase("decrypt")) {
+                runner.decrypt();
+            } else if (operation.equalsIgnoreCase("crack")) {
+                runner.crack();
+            }
+        } else {
+            talkingWithUser.sayAboutMistake();
+        }
     }
 }
+
+
